@@ -16,4 +16,7 @@
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
+  <modules>
+  	<module>taotao-manager-pojo</module>
+  </modules>
 </project>
