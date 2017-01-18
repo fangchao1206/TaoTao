@@ -27,6 +27,7 @@ public class ItemController {
 	@ResponseBody
 	public EUDataGridResult getItemList(Integer page, Integer rows) {
 		EUDataGridResult result = itemService.getItemList(page, rows);
+		System.out.println(result);
 		return result;
 	}
 	@RequestMapping("/item/save")
