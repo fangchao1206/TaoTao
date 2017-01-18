@@ -25,7 +25,7 @@ public class PictureServiceImpl implements PictureService{
 	private String FTP_PASSWORD;
 	@Value("${FTP_BASE_PATH}")
 	private String FTP_BASE_PATH;
-	 @Value("IMAGE_BASE_URL")
+	 @Value("${IMAGE_BASE_URL}")
 	 private String IMAGE_BASE_URL;
 	@Override
 	public Map uploadPic(MultipartFile uploadFile) {

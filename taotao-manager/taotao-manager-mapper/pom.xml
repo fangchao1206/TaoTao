@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
     		<artifactId>pagehelper</artifactId>
-    <version>3.2.1</version>
+   
 		</dependency>
 		<!-- MySql -->
 		<dependency>
