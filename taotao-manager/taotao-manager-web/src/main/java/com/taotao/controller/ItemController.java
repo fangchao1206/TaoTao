@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.taotao.commom.pojo.EUDataGridResult;
+import com.taotao.commom.pojo.TaotaoResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.service.ItemService;
 
@@ -28,4 +29,12 @@ public class ItemController {
 		EUDataGridResult result = itemService.getItemList(page, rows);
 		return result;
 	}
+	@RequestMapping("/item/save")
+	@ResponseBody
+		public TaotaoResult saveItem(TbItem item, String desc) throws Exception {
+			//添加商品信息
+			itemService.saveItem(item, desc, null);
+			return TaotaoResult.ok();
+		}
+
 }
