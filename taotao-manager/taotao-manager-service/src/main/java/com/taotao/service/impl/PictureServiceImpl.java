@@ -1,5 +1,4 @@
 package com.taotao.service.impl;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,10 +8,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.taotao.service.PictureService;
 import com.taotao.commom.utils.FtpUtil;
 import com.taotao.commom.utils.IDUtils;
-import com.taotao.service.PictureService;
+
+ 
 @Service
 public class PictureServiceImpl implements PictureService{
 	@Value("${FTP_ADDRESS}")
@@ -25,7 +25,7 @@ public class PictureServiceImpl implements PictureService{
 	private String FTP_PASSWORD;
 	@Value("${FTP_BASE_PATH}")
 	private String FTP_BASE_PATH;
-	 @Value("IMAGE_BASE_URL")
+	 @Value("${IMAGE_BASE_URL}")
 	 private String IMAGE_BASE_URL;
 	@Override
 	public Map uploadPic(MultipartFile uploadFile) {
@@ -35,7 +35,7 @@ public class PictureServiceImpl implements PictureService{
 					if (uploadFile.isEmpty())
 						return null;
 					// 上传文件以日期为单位分开存放，可以提高图片的查询速度
-					String filePath =   new SimpleDateFormat("yyyy").format(new Date()) + "/"
+					String filePath = "/"+  new SimpleDateFormat("yyyy").format(new Date()) + "/"
 							+ new SimpleDateFormat("MM").format(new Date()) + "/"
 							+ new SimpleDateFormat("dd").format(new Date());
 		 String originalFilename = uploadFile.getOriginalFilename();
@@ -52,7 +52,7 @@ public class PictureServiceImpl implements PictureService{
 		      		return 	resultMap;
 		      	} 
 		      		resultMap.put("error", 0);//kindedit 规定的格式
-		      		resultMap.put("url",IMAGE_BASE_URL+"/"+filePath+"/"+newFileName  );
+		      		resultMap.put("url",IMAGE_BASE_URL+filePath+"/"+newFileName  );
 		      		return 	resultMap;
 		} catch (IOException e) {
 			resultMap.put("error", 1);//kindedit 规定的格式

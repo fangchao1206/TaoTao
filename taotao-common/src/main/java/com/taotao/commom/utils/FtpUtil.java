@@ -51,13 +51,13 @@ public class FtpUtil {
 				return result;
 			}
 			//切换到上传目录
-			if (!ftp.changeWorkingDirectory(basePath+"/"+filePath)) {
+			if (!ftp.changeWorkingDirectory(basePath +filePath)) {
 				//如果目录不存在创建目录
 				String[] dirs = filePath.split("/");
 				String tempPath = basePath;
 				for (String dir : dirs) {
 					if (null == dir || "".equals(dir)) continue;
-					tempPath += "/" + dir;
+					tempPath += "/" + dir; 
 					if (!ftp.changeWorkingDirectory(tempPath)) {
 						if (!ftp.makeDirectory(tempPath)) {
 							return result;
@@ -142,10 +142,13 @@ public class FtpUtil {
 	}
 	
 	public static void main(String[] args) {
+		String s="////1/2/3/4/////";  
+		String ss[]=s.split("/");//长度是8  只截取/左边的 空也算
+		System.out.println(ss.length);
+		
 		try {  
-	        FileInputStream in=new FileInputStream(new File("D:\\temp\\image\\gaigeming.jpg"));  
-	        boolean flag = uploadFile("192.168.25.133", 21, "ftpuser", "ftpuser", "/home/ftpuser/www/images","/2015/01/21", "gaigeming.jpg", in);  
-	        System.out.println(flag);  
+	        FileInputStream in=new FileInputStream(new File("C:\\Users\\Fang\\Desktop\\PS学习\\hand.jpg"));  
+	        boolean flag = uploadFile("115.159.5.231", 21, "ftpuser", "fangchao.", "/home/ftpuser/www/images","/2015/01/21", "gaigeming.jpg", in);  	        System.out.println(flag);  
 	    } catch (FileNotFoundException e) {  
 	        e.printStackTrace();  
 	    }  
