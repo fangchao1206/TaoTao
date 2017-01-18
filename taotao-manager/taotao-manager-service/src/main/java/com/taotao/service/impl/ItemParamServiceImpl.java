@@ -25,7 +25,7 @@ public class ItemParamServiceImpl implements ItemParamService {
 		 TbItemParamExample example=new TbItemParamExample();
 		//分页处理   pageHelper 插件配置在mapper的pom中  在mapper调用之前使用
 			PageHelper.startPage(page, rows);
-			List<TbItemParam > list = itemParamMapper.selectByExample(example);
+			List<TbItemParam > list = itemParamMapper.selectByExampleWithBLOBs (example);//要选择withBlob这个 因为param_data 是text类型的
 			//创建一个返回值对象
 			EUDataGridResult result = new EUDataGridResult();
 			result.setRows(list);
