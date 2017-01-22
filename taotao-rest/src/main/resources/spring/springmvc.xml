@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+		<!-- 使用restful之后（前端控制器 配置为拦截 / ）静态资源解析会去找映射器找handler(Controller的@RequestMapping)  这当然找不到 所以要配置静态资源解析 -->
+		 <!--   <mvc:resources location="/" mapping="/**"/> 经实验 /* /**效果一样 都会去找子目录   个人感觉这个配置后后面的两个可以不配置 但是要放在最前面
+		  <mvc:resources location="/js/" mapping="/js/**"/> 不加这句话页面会无法使用js
+		<mvc:resources location="/img/" mapping="/img/**"/> /img/*和 /img/**不一样     /**代表包含子url 使用/img/**时img/aa/1.jpg可以被访问到  而使用/img/*时  /img/bb/1.jpg访问不到  只能访问/img/1.png这样一级目录的
+	  -->
+	 
+	    
+
+<!-- <bean class="cn.itcast.ssm.controller.ItemsController"></bean> -->
+	<!-- 可以扫描controller、service、... 这里让扫描controller，指定controller的包 -->
+<context:component-scan base-package="com.taotao.rest.controller" />
+
+<mvc:annotation-driven /><!-- //注解驱动 -->
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+ 
+</beans>
