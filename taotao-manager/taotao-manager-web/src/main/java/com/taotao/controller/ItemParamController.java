@@ -19,4 +19,6 @@ public EUDataGridResult getItemList(Integer page, Integer rows) {
 	System.out.println(result);
 	return result;
 }
+/*@RequestMapping("/item/param/query/itemcatid/{itemcatid}")
+public */
 }
