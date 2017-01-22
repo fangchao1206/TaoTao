@@ -9,13 +9,16 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.commom.pojo.EUDataGridResult;
+import com.taotao.commom.pojo.TaotaoResult;
 import com.taotao.commom.utils.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamItemMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
 import com.taotao.pojo.TbItemExample.Criteria;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.service.ItemService;
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -25,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
 		private TbItemMapper itemMapper;
 		@Autowired
 		private TbItemDescMapper itemDescMapper;
+		@Autowired
+		private TbItemParamItemMapper itemParamItemMapper;
+		
 		@Override
 		public TbItem getItemById(long itemId) {
 			
@@ -78,8 +84,34 @@ public class ItemServiceImpl implements ItemService {
 			itemDesc.setItemDesc(desc);
 			itemDesc.setCreated(date);
 			itemDesc.setUpdated(date);
-			//插入数据
+			//插入 商品描述数据 数据
 			itemDescMapper.insert(itemDesc);
-
+           //插入 规格参数
+		 insertItemParamItem(id, itemParams);
+		/* if(...){
+			 做一些插入错误 校验
+		 }*/
+		}
+		
+		/**
+		 * 添加规格参数
+		 * <p>Title: insertItemParamItem</p>
+		 * <p>Description: </p>
+		 * @param itemId
+		 * @param itemParam
+		 * @return
+		 */
+		private TaotaoResult insertItemParamItem(Long itemId, String itemParams) {
+			//创建一个pojo
+			TbItemParamItem itemParamItem = new TbItemParamItem();
+			itemParamItem.setItemId(itemId);
+			itemParamItem.setParamData(itemParams);
+			itemParamItem.setCreated(new Date());
+			itemParamItem.setUpdated(new Date());
+			//向表中插入数据
+			itemParamItemMapper.insert(itemParamItem);
+			
+			return TaotaoResult.ok();
+			
 		}
 }

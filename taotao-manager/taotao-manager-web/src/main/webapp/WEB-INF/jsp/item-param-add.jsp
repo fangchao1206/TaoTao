@@ -47,8 +47,8 @@
 						 $("#itemParamAddTable .selectItemCat").click();
 					  });
 					  return ;
-				  }
-				  $(".addGroupTr").show();
+				  } 
+				  $(".addGroupTr").show(); 
 			  });
 			}
 		});
