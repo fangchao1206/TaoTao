@@ -1,7 +1,11 @@
 package com.taotao.commom.pojo;
 
 import java.util.List;
-
+/**
+ * 列表页 带分页的 
+ * @author fangchao05
+ *
+ */
 public class EUDataGridResult {
 	private long total;
 	private List<?> rows;
